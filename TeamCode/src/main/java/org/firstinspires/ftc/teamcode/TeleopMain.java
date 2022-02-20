@@ -182,8 +182,7 @@ public class TeleopMain extends OpMode {
         robot.RightBack.setPower(rightPower);
         robot.CarouselWheel.setPower(carouselPower);
         robot.Arm.setPower(finalArmPower);
-        robot.ClawRight.setPower(clawPower);
-        robot.ClawLeft.setPower(clawPower);
+
 
         //telemetry
         telemetry.addData("Left:", "%.2f", leftStick);

@@ -15,18 +15,8 @@ public class MeepMeepTesting {
                 .setConstraints(57.73611498784813, 60, Math.toRadians(180), Math.toRadians(180), 17)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(-40, -62, Math.toRadians(0))) // COPY PASTE YOUR CODE AFTER THIS LINE, edit this line to the start pos of robot
-                                .back(20) // Align with Carousel Wheel
-                                .waitSeconds(1)
-                                .addDisplacementMarker(() -> { // Spin Carousel Wheel
-                                    // TODO: Put carousel wheel spinner here
-                                })
-                                .splineTo(new Vector2d(-12, -40), Math.toRadians(90)) // Go To Blue Shipping Hub
-                                .waitSeconds(1)
-                                .addDisplacementMarker(() -> { // Ship the hub
-                                    // TODO: Put the stuff to ship the hub here
-                                })
-                                .setReversed(true)
-                                .splineTo(new Vector2d(50, -40), Math.toRadians(0))
+                                .splineTo(new Vector2d(40, -40), Math.toRadians(0))
+                                .splineTo(new Vector2d(60, -60), Math.toRadians(0))
                         .build()
                 );
 

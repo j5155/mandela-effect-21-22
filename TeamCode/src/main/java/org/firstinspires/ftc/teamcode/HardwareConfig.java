@@ -65,8 +65,6 @@ public class HardwareConfig
     public DcMotor RightBack = null;
     public DcMotor CarouselWheel = null;
     public DcMotorEx Arm = null;
-    public CRServo ClawLeft = null;
-    public CRServo ClawRight = null;
     public WebcamName Cam = null;
 
 
@@ -91,8 +89,6 @@ public class HardwareConfig
         RightFront    = hwMap.get(DcMotor.class, "right_front");
         CarouselWheel = hwMap.get(DcMotor.class, "carousel_wheel");
         Arm = hwMap.get(DcMotorEx.class, "arm");
-        ClawLeft = hwMap.get(CRServo.class, "claw_left");
-        ClawRight = hwMap.get(CRServo.class, "claw_right");
         Cam = hwMap.get(WebcamName.class, "webcam");
 
         //set motor directions
@@ -102,8 +98,6 @@ public class HardwareConfig
         RightFront.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         CarouselWheel.setDirection(DcMotor.Direction.FORWARD);
         Arm.setDirection(DcMotor.Direction.REVERSE);
-        ClawLeft.setDirection(CRServo.Direction.FORWARD);
-        ClawRight.setDirection(CRServo.Direction.REVERSE);
 
         //set zero power to brake
         LeftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -120,8 +114,7 @@ public class HardwareConfig
         RightFront.setPower(0);
         CarouselWheel.setPower(0);
         Arm.setPower(0);
-        ClawLeft.setPower(0);
-        ClawRight.setPower(0);
+
 
         // Set all motors to their encoder modes
         // May want to use RUN_USING_ENCODERS if encoders are installed

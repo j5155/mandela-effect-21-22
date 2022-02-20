@@ -186,15 +186,12 @@ public class BlueStorageSite extends LinearOpMode {
     }
     void Claw(double power, double howLong) {
         robot.Arm.setPower(0);
-        robot.ClawLeft.setPower(CLAW_SPEED);
-        robot.ClawRight.setPower(CLAW_SPEED);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds()) <CLAW_TIME) {
             telemetry.addData("Arm:", "%2.5f S Elapsed", runtime.seconds());
             telemetry.update();
         }
-        robot.ClawLeft.setPower(0);
-        robot.ClawRight.setPower(0);
+
     }
 
 }
