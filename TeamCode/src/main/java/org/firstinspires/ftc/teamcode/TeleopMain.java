@@ -29,6 +29,8 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import android.app.usage.NetworkStats;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -92,10 +94,11 @@ public class TeleopMain extends OpMode {
     @Override
     public void loop() {
         // TODO: update for new arm
-        final double CLAW_SPEED = .4;
         final double MAX_EXTEND = 1190;
         final double ARM_SPEED = 1;
-        double armPower = -gamepad2.left_stick_y;
+        final double BUCKET_LIMIT = .8;
+        double leftStick2 = -gamepad2.left_stick_y;
+        double rightStick2 = -gamepad2.right_stick_y;
         double leftStick = -gamepad1.left_stick_y;
         double rightStick = -gamepad1.right_stick_y;
         double leftTrigger = gamepad1.left_trigger;
@@ -112,25 +115,21 @@ public class TeleopMain extends OpMode {
         double clawPower = 0;
         double finalArmPower = 0;
         double carouselPower = 0;
-        /* Original pivoting
-        //left pivot
-        if (leftTrigger > 0.01 && rightTrigger < 0.01) {
-            leftPower = -leftTrigger;
-            rightPower = leftTrigger;
-        }
-        //right pivot
-        else if (rightTrigger > 0.01 && leftTrigger < 0.01) {
-            leftPower = rightTrigger;
-            rightPower = -rightTrigger;
-        }
-        //normal
-        else {
-            leftPower = leftStick;
-            rightPower = rightStick;
-        }
-        */
+
+        //Arm
+        robot.Arm.setPower(leftStick2);
+        //robot.Bucket.setPower(leftStick2 * BUCKET_LIMIT);
+
+        //Bucket
+        //robot.Bucket.setPower(rightStick2);
+
+        //Intake
+        //robot.Intake.setPower(rightTrigger2 - leftTrigger2);
+
+        //driving
         leftPower = leftStick  - leftTrigger + rightTrigger;
         rightPower = rightStick - rightTrigger + leftTrigger;
+
         //fast
         if (fast && !slow) {
             leftPower *= 1;
@@ -155,23 +154,14 @@ public class TeleopMain extends OpMode {
         }
 
         //servo
-        if (rightTrigger2 > 0.1 && leftTrigger2 < 0.1) {
-            clawPower = rightTrigger2 * CLAW_SPEED;
-
-        } else if (rightTrigger2 < 0.1 && leftTrigger2 > 0.1) {
-            clawPower = -leftTrigger2 * CLAW_SPEED;
-
-        } else {
-            clawPower = 0;
-        }
 
         //prevents arm from going to far
-        if ((currentArmPosition > MAX_EXTEND) && (armPower > 0.01)) {
+        if ((currentArmPosition > MAX_EXTEND) && (leftStick2 > 0.01)) {
             finalArmPower = 0;
-        } else if ((currentArmPosition < 10) && (armPower < -0.01)) {
+        } else if ((currentArmPosition < 10) && (leftStick2 < -0.01)) {
             finalArmPower = 0;
         } else {
-            finalArmPower = armPower * ARM_SPEED;
+            finalArmPower = leftStick2 * ARM_SPEED;
 
         }
 
@@ -182,7 +172,8 @@ public class TeleopMain extends OpMode {
         robot.RightBack.setPower(rightPower);
         robot.CarouselWheel.setPower(carouselPower);
         robot.Arm.setPower(finalArmPower);
-
+        //robot.ClawRight.setPower(clawPower);
+        //robot.Bucket.setPower(clawPower);
 
         //telemetry
         telemetry.addData("Left:", "%.2f", leftStick);
