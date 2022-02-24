@@ -9,10 +9,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
-// Example made by James
 
 @Autonomous(name="BlueWarehouseRR", group="BlueWRR")
-@Disabled
 public class BlueWarehouseRR extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
