@@ -94,7 +94,7 @@ public class HardwareConfig
         Arm = hwMap.get(DcMotorEx.class, "arm");
         //Bucket = hwMap.get(CRServo.class, "claw_left");
         //Cam = hwMap.get(WebcamName.class, "webcam");
-        // Intake = hwMap.get(DcMotor.class, "Intake");
+        Intake = hwMap.get(DcMotor.class, "intake");
 
         //set motor directions
         LeftFront.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors

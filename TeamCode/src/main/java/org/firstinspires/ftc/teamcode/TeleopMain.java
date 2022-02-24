@@ -124,7 +124,7 @@ public class TeleopMain extends OpMode {
         //robot.Bucket.setPower(rightStick2);
 
         //Intake
-        //robot.Intake.setPower(rightTrigger2 - leftTrigger2);
+        robot.Intake.setPower(rightTrigger2 - leftTrigger2);
 
         //driving
         leftPower = leftStick  - leftTrigger + rightTrigger;
