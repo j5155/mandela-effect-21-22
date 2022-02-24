@@ -97,8 +97,8 @@ public class TeleopMain extends OpMode {
         final double MAX_EXTEND = 1190;
         final double ARM_SPEED = 1;
         final double BUCKET_LIMIT = .8;
-        double leftStick2 = -gamepad2.left_stick_y;
-        double rightStick2 = -gamepad2.right_stick_y;
+        double leftStick2 = gamepad2.left_stick_y;
+        double rightStick2 = gamepad2.right_stick_y;
         double leftStick = -gamepad1.left_stick_y;
         double rightStick = -gamepad1.right_stick_y;
         double leftTrigger = gamepad1.left_trigger;
@@ -117,14 +117,14 @@ public class TeleopMain extends OpMode {
         double carouselPower = 0;
 
         //Arm
-        robot.Arm.setPower(leftStick2);
-        //robot.Bucket.setPower(leftStick2 * BUCKET_LIMIT);
+        robot.Arm.setPower(-leftStick2);
+        robot.Bucket.setPower(leftStick2 * BUCKET_LIMIT);
 
         //Bucket
-        //robot.Bucket.setPower(rightStick2);
+        robot.Bucket.setPower(-rightStick2);
 
         //Intake
-        //robot.Intake.setPower(rightTrigger2 - leftTrigger2);
+        robot.Intake.setPower(rightTrigger2 - leftTrigger2);
 
         //driving
         leftPower = leftStick  - leftTrigger + rightTrigger;
