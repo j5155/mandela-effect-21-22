@@ -34,6 +34,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -92,7 +93,7 @@ public class HardwareConfig
         RightFront    = hwMap.get(DcMotor.class, "right_front");
         CarouselWheel = hwMap.get(DcMotor.class, "carousel_wheel");
         Arm = hwMap.get(DcMotorEx.class, "arm");
-        //Bucket = hwMap.get(CRServo.class, "claw_left");
+        Bucket = hwMap.get(CRServo.class, "bucket");
         //Cam = hwMap.get(WebcamName.class, "webcam");
         Intake = hwMap.get(DcMotor.class, "intake");
 
@@ -103,8 +104,8 @@ public class HardwareConfig
         RightFront.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         CarouselWheel.setDirection(DcMotor.Direction.FORWARD);
         Arm.setDirection(DcMotor.Direction.REVERSE);
-        //Bucket.setDirection(CRServo.Direction.FORWARD);
-        //Intake.setDirection(DcMotorSimple.Direction.FORWARD);
+        Bucket.setDirection(CRServo.Direction.FORWARD);
+        Intake.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //set zero power to brake
         LeftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -113,7 +114,7 @@ public class HardwareConfig
         RightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         CarouselWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //Intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        Intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         // Set all motors to zero power
         LeftFront.setPower(0);
@@ -122,8 +123,8 @@ public class HardwareConfig
         RightFront.setPower(0);
         CarouselWheel.setPower(0);
         Arm.setPower(0);
-        //Bucket.setPower(0);
-        //Intake.setPower(0);
+        Bucket.setPower(0);
+        Intake.setPower(0);
 
         // Set all motors to their encoder modes
         // May want to use RUN_USING_ENCODERS if encoders are installed

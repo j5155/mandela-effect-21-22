@@ -117,7 +117,7 @@ public class TeleopMain extends OpMode {
 
         //Arm
         robot.Arm.setPower(leftStick2);
-        //robot.Bucket.setPower(leftStick2 * BUCKET_LIMIT);
+        robot.Bucket.setPower(leftStick2 * BUCKET_LIMIT);
 
         //Bucket
         robot.Bucket.setPower(rightStick2);
@@ -152,8 +152,6 @@ public class TeleopMain extends OpMode {
             carouselPower = 1;
         }
 
-        //servo
-
         //prevents arm from going to far
         if ((currentArmPosition > MAX_EXTEND) && (leftStick2 > 0.01)) {
             finalArmPower = 0;
@@ -171,10 +169,6 @@ public class TeleopMain extends OpMode {
         robot.RightBack.setPower(rightPower);
         robot.CarouselWheel.setPower(carouselPower);
         robot.Arm.setPower(finalArmPower);
-        //robot.ClawRight.setPower(clawPower);
-        robot.Bucket.setPower(clawPower);
-
-
 
         //telemetry
         telemetry.addData("Left:", "%.2f", leftStick);
