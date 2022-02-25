@@ -14,7 +14,7 @@ public class MeepMeepTesting {
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(57.73611498784813, 60, Math.toRadians(180), Math.toRadians(180), 17)
                 .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(-5, -61, Math.toRadians(0))) // COPY PASTE YOUR CODE AFTER THIS LINE, edit this line to the start pos of robot                .splineTo(new Vector2d(50, 55), Math.toRadians(0)) // This automatically gets the robot to the specified position using a spline curve
+                        drive.trajectorySequenceBuilder(new Pose2d(-5, -61, Math.toRadians(0))) // COPY PASTE YOUR CODE AFTER THIS LINE, edit this line to the start pos of robot
                                 .forward(50)
                                 .build()
                 );

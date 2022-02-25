@@ -120,7 +120,7 @@ public class TeleopMain extends OpMode {
         //robot.Bucket.setPower(leftStick2 * BUCKET_LIMIT);
 
         //Bucket
-        //robot.Bucket.setPower(rightStick2);
+        robot.Bucket.setPower(rightStick2);
 
         //Intake
         robot.Intake.setPower(rightTrigger2 - leftTrigger2);
@@ -172,7 +172,9 @@ public class TeleopMain extends OpMode {
         robot.CarouselWheel.setPower(carouselPower);
         robot.Arm.setPower(finalArmPower);
         //robot.ClawRight.setPower(clawPower);
-        //robot.Bucket.setPower(clawPower);
+        robot.Bucket.setPower(clawPower);
+
+
 
         //telemetry
         telemetry.addData("Left:", "%.2f", leftStick);
