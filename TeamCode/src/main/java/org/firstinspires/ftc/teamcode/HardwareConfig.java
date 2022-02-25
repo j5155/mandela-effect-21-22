@@ -103,7 +103,7 @@ public class HardwareConfig
         RightBack.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         RightFront.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         CarouselWheel.setDirection(DcMotor.Direction.FORWARD);
-        Arm.setDirection(DcMotor.Direction.REVERSE);
+        Arm.setDirection(DcMotorEx.Direction.REVERSE);
         Bucket.setDirection(CRServo.Direction.FORWARD);
         Intake.setDirection(DcMotorSimple.Direction.FORWARD);
 
@@ -113,7 +113,7 @@ public class HardwareConfig
         RightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         RightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         CarouselWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        Arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Arm.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         Intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         // Set all motors to zero power
@@ -133,7 +133,7 @@ public class HardwareConfig
         RightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         LeftBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         CarouselWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        Arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Arm.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
 
     }
 }
