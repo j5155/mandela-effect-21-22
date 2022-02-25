@@ -29,7 +29,6 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import android.app.usage.NetworkStats;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -97,8 +96,8 @@ public class TeleopMain extends OpMode {
         final double MAX_EXTEND = 1190;
         final double ARM_SPEED = 1;
         final double BUCKET_LIMIT = .8;
-        double leftStick2 = gamepad2.left_stick_y;
-        double rightStick2 = gamepad2.right_stick_y;
+        double leftStick2 = -gamepad2.left_stick_y;
+        double rightStick2 = -gamepad2.right_stick_y;
         double leftStick = -gamepad1.left_stick_y;
         double rightStick = -gamepad1.right_stick_y;
         double leftTrigger = gamepad1.left_trigger;
@@ -117,11 +116,11 @@ public class TeleopMain extends OpMode {
         double carouselPower = 0;
 
         //Arm
-        robot.Arm.setPower(-leftStick2);
+        robot.Arm.setPower(leftStick2);
         robot.Bucket.setPower(leftStick2 * BUCKET_LIMIT);
 
         //Bucket
-        robot.Bucket.setPower(-rightStick2);
+        robot.Bucket.setPower(rightStick2);
 
         //Intake
         robot.Intake.setPower(rightTrigger2 - leftTrigger2);
@@ -153,8 +152,6 @@ public class TeleopMain extends OpMode {
             carouselPower = 1;
         }
 
-        //servo
-
         //prevents arm from going to far
         if ((currentArmPosition > MAX_EXTEND) && (leftStick2 > 0.01)) {
             finalArmPower = 0;
@@ -172,8 +169,6 @@ public class TeleopMain extends OpMode {
         robot.RightBack.setPower(rightPower);
         robot.CarouselWheel.setPower(carouselPower);
         robot.Arm.setPower(finalArmPower);
-        //robot.ClawRight.setPower(clawPower);
-        //robot.Bucket.setPower(clawPower);
 
         //telemetry
         telemetry.addData("Left:", "%.2f", leftStick);

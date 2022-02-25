@@ -10,13 +10,13 @@ import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 
-@Autonomous(name="BlueWarehouseRR", group="BlueWRR")
-public class BlueWarehouseRR extends LinearOpMode {
+@Autonomous(name="RedWarehouseRR", group="Red")
+public class RedWarehouseRR extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         SampleTankDrive drive = new SampleTankDrive(hardwareMap);
 
-        Pose2d startPose = new Pose2d(-5, 61, 0); // Change this to where the robot starts!
+        Pose2d startPose = new Pose2d(-5, -61, 0); // Change this to where the robot starts!
 
         drive.setPoseEstimate(startPose);
 
