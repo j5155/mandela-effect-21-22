@@ -33,6 +33,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -93,7 +94,7 @@ public class TeleopMain extends OpMode {
     @Override
     public void loop() {
         // TODO: update for new arm
-        final double ARM_SPEED = .5;
+        final double ARM_SPEED = .8;
         double leftStick2 = -gamepad2.left_stick_y;
         double leftStick = -gamepad1.left_stick_y;
         double rightStick = -gamepad1.right_stick_y;
@@ -107,15 +108,17 @@ public class TeleopMain extends OpMode {
         boolean slow = gamepad1.right_bumper;
         boolean a = gamepad2.a;
         boolean b = gamepad2.b;
+        boolean x = gamepad2.x;
         double rightPower;
         double leftPower;
+        double bucket = 0;
         double carouselPower = 0;
 
         //Arm
         if(robot.Arm.getCurrentPosition() < 10 && leftStick2 < -0.1 && !a){
             robot.Arm.setPower(0);
         } else {
-            robot.Arm.setPower(-leftStick2 * ARM_SPEED);
+            robot.Arm.setPower(leftStick2 * ARM_SPEED);
         }
 
         //Intake
@@ -149,10 +152,17 @@ public class TeleopMain extends OpMode {
         }
 
         if(b){
-            robot.Bucket.setPosition(0.75);
+            bucket = 0.75;
+            robot.Bucket.setPosition(bucket);
         }
         else {
-            robot.Bucket.setPosition(robot.Arm.getCurrentPosition() / 12000);
+            bucket = robot.Arm.getCurrentPosition() / 10800.0;
+            robot.Bucket.setPosition(bucket);
+        }
+
+        if(x){
+            robot.Arm.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+            robot.Arm.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         }
 
         //declaring powers
@@ -165,6 +175,8 @@ public class TeleopMain extends OpMode {
         //telemetry
         telemetry.addData("Left:", "%.2f", leftStick);
         telemetry.addData("Right:", "%.2f", rightStick);
+        telemetry.addData("Arm:", robot.Arm.getCurrentPosition());
+        telemetry.addData("Bucket:", bucket);
         telemetry.addData("Slow", slow);
         telemetry.addData("Fast", fast);
         telemetry.update();
