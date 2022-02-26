@@ -66,9 +66,8 @@ public class HardwareConfig
     public DcMotor RightBack = null;
     public DcMotor CarouselWheel = null;
     public DcMotorEx Arm = null;
-    public CRServo Bucket = null;
+    public Servo Bucket = null;
     public DcMotor Intake = null;
-    public CRServo ClawRight = null;
     public WebcamName Cam = null;
 
 
@@ -93,7 +92,7 @@ public class HardwareConfig
         RightFront    = hwMap.get(DcMotor.class, "right_front");
         CarouselWheel = hwMap.get(DcMotor.class, "carousel_wheel");
         Arm = hwMap.get(DcMotorEx.class, "arm");
-        Bucket = hwMap.get(CRServo.class, "bucket");
+        Bucket = hwMap.get(Servo.class, "bucket");
         //Cam = hwMap.get(WebcamName.class, "webcam");
         Intake = hwMap.get(DcMotor.class, "intake");
 
@@ -103,8 +102,8 @@ public class HardwareConfig
         RightBack.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         RightFront.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         CarouselWheel.setDirection(DcMotor.Direction.FORWARD);
-        Arm.setDirection(DcMotorEx.Direction.REVERSE);
-        Bucket.setDirection(CRServo.Direction.FORWARD);
+        Arm.setDirection(DcMotorEx.Direction.FORWARD);
+        Bucket.setDirection(Servo.Direction.FORWARD);
         Intake.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //set zero power to brake
@@ -123,7 +122,6 @@ public class HardwareConfig
         RightFront.setPower(0);
         CarouselWheel.setPower(0);
         Arm.setPower(0);
-        Bucket.setPower(0);
         Intake.setPower(0);
 
         // Set all motors to their encoder modes

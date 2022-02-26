@@ -93,10 +93,8 @@ public class TeleopMain extends OpMode {
     @Override
     public void loop() {
         // TODO: update for new arm
-        final double ARM_SPEED = 1;
-        final double BUCKET_LIMIT = .8;
+        final double ARM_SPEED = .5;
         double leftStick2 = -gamepad2.left_stick_y;
-        double rightStick2 = -gamepad2.right_stick_y;
         double leftStick = -gamepad1.left_stick_y;
         double rightStick = -gamepad1.right_stick_y;
         double leftTrigger = gamepad1.left_trigger;
@@ -107,21 +105,17 @@ public class TeleopMain extends OpMode {
         boolean leftBumper = gamepad2.left_bumper;
         boolean fast = gamepad1.left_bumper;
         boolean slow = gamepad1.right_bumper;
-        double rightPower = 0;
-        double leftPower = 0;
+        boolean b = gamepad2.b;
+        double rightPower;
+        double leftPower;
         double carouselPower = 0;
 
         //Arm
-        if(robot.Arm.getCurrentPosition() < 10 && leftStick2 < 0){
+        if(robot.Arm.getCurrentPosition() < 10 && leftStick2 < -0.1){
             robot.Arm.setPower(0);
         } else {
             robot.Arm.setPower(leftStick2 * ARM_SPEED);
-            robot.Bucket.setPower(leftStick2 * BUCKET_LIMIT);
         }
-
-
-        //Bucket
-        robot.Bucket.setPower(rightStick2);
 
         //Intake
         robot.Intake.setPower(rightTrigger2 - leftTrigger2);
@@ -151,6 +145,13 @@ public class TeleopMain extends OpMode {
             carouselPower = -0.3;
         } else if (!leftBumper && rightBumper) {
             carouselPower = 0.3;
+        }
+
+        if(b){
+            robot.Bucket.setPosition(0.75);
+        }
+        else {
+            robot.Bucket.setPosition(robot.Arm.getCurrentPosition() / 12000);
         }
 
         //declaring powers
