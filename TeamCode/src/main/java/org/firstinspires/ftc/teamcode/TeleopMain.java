@@ -176,14 +176,4 @@ public class TeleopMain extends OpMode {
     public void stop() {
     }
 
-    //timer function
-    public void timer(double howLong) {
-        period.reset();
-        while (period.seconds() < howLong) {
-            telemetry.addData("Timer", "%.2f", period.seconds());
-            telemetry.update();
-        }
-    }
-
-
 }
