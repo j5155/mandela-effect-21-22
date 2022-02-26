@@ -68,7 +68,6 @@ public class HardwareConfig
     public DcMotorEx Arm = null;
     public CRServo Bucket = null;
     public DcMotor Intake = null;
-    public CRServo ClawRight = null;
     public WebcamName Cam = null;
 
 
