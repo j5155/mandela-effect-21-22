@@ -26,7 +26,7 @@ public class RRRedStorageSite extends LinearOpMode {
                 //.back(20) // Align with Carousel Wheel
                 .splineTo(new Vector2d(-47, -60), Math.toRadians(180))
                 .waitSeconds(1)
-                .addDisplacementMarker(() -> { carouselWheel(0.3, 8.4);// Spin Carousel Wheel
+                .addDisplacementMarker(() -> { carouselWheel(0.1, 8.4);// Spin Carousel Wheel
                 })
                 .splineTo(new Vector2d(-12, -40), Math.toRadians(270)) // Go To Blue Shipping Hub
                 .waitSeconds(1)

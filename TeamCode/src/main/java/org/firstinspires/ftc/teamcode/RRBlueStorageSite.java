@@ -25,7 +25,7 @@ public class RRBlueStorageSite extends LinearOpMode {
         TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(startPose)
                 //.forward(20) // Align with Carousel Wheel
                 .splineTo(new Vector2d(-47, 60), Math.toRadians(180))
-                .addDisplacementMarker(() -> { carouselWheel(0.3, 8.4);// Spin Carousel Wheel
+                .addDisplacementMarker(() -> { carouselWheel(0.1, 7.0);// Spin Carousel Wheel
                 })
                 .splineTo(new Vector2d(-12, 40), Math.toRadians(270)) // Go To Blue Shipping Hub
                 .waitSeconds(1)
