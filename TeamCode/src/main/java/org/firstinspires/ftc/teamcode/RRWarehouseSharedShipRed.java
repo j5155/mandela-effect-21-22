@@ -33,17 +33,15 @@ public class RRWarehouseSharedShipRed extends LinearOpMode {
 
         TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(startPose)
                 .back(17) // Goes forward the specified number of inches
-                //.turn(Math.toRadians(90)) // This turns the specified number of radians, use Math.toRadians(degrees) to turn in degrees like this
-                //.waitSeconds(3) // Waits the specified number of seconds without breaking anything
-                .splineTo(new Vector2d(45, 44), Math.toRadians(0)) // This automatically gets the robot to the specified position using a spline curve
-                .splineTo(new Vector2d(46, 17), Math.toRadians(90)) // This automatically gets the robot to the specified position using a spline curve
+                .splineTo(new Vector2d(45, 44), Math.toRadians(180)) // This automatically gets the robot to the specified position using a spline curve
+                .splineTo(new Vector2d(46, 17), Math.toRadians(270)) // This automatically gets the robot to the specified position using a spline curve
                 .addDisplacementMarker(() -> {
                     Arm(ARM_SPEED, 6);// Ship the hub
 // Simple displacement markers run after the previous action, i.e. this one would run after the robot had finished turning
                     // Run your action in here!
                     // Drop servo, start motor, whatever
                 })
-                .forward(10)
+                .back(10)
 
                 // There are a few other commands that we can't use because tank drive, such as .strafeLeft and .splineToLinearHeading
 
