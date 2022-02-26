@@ -18,18 +18,17 @@ public class RRRedStorageSite extends LinearOpMode {
         SampleTankDrive drive = new SampleTankDrive(hardwareMap);
         HardwareConfig robot   = new HardwareConfig();   // Use a Pushbot's hardware
 
-        Pose2d startPose = new Pose2d(-40, -62, Math.toRadians(0));
+        Pose2d startPose = new Pose2d(-5, -61, Math.toRadians(180));
 
         drive.setPoseEstimate(startPose);
 
         TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(startPose)
-                .back(20) // Align with Carousel Wheel
-                .splineTo(new Vector2d(-57, -60), Math.toRadians(180))
+                //.back(20) // Align with Carousel Wheel
+                .splineTo(new Vector2d(-47, -60), Math.toRadians(180))
                 .waitSeconds(1)
-                .addDisplacementMarker(() -> {
-                    carouselWheel(robot.CAROUSEL_SPEED, 8.4);// Spin Carousel Wheel
+                .addDisplacementMarker(() -> { carouselWheel(0.3, 8.4);// Spin Carousel Wheel
                 })
-                .splineTo(new Vector2d(-12, -40), Math.toRadians(90)) // Go To Blue Shipping Hub
+                .splineTo(new Vector2d(-12, -40), Math.toRadians(270)) // Go To Blue Shipping Hub
                 .waitSeconds(1)
                 .addDisplacementMarker(() -> {
                     Arm(ARM_SPEED, 6);// Ship the hub
@@ -47,6 +46,7 @@ public class RRRedStorageSite extends LinearOpMode {
 
     private void carouselWheel(double power, double howLong) {
         HardwareConfig robot   = new HardwareConfig();   // Use a Pushbot's hardware
+        robot.init(hardwareMap);
         final ElapsedTime runtime = new ElapsedTime();
         robot.CarouselWheel.setPower(power);
         runtime.reset();
@@ -58,6 +58,7 @@ public class RRRedStorageSite extends LinearOpMode {
     }
     void Arm(double power, double howLong) {
         HardwareConfig robot   = new HardwareConfig();   // Use a Pushbot's hardware
+        robot.init(hardwareMap);
         final ElapsedTime runtime = new ElapsedTime();
         robot.Arm.setPower(+power);
         runtime.reset();
