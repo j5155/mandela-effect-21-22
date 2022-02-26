@@ -95,6 +95,7 @@ public class TeleopMain extends OpMode {
     public void loop() {
         // TODO: update for new arm
         final double ARM_SPEED = .8;
+        final double BUCKET_LEVEL = .65;
         double leftStick2 = -gamepad2.left_stick_y;
         double leftStick = -gamepad1.left_stick_y;
         double rightStick = -gamepad1.right_stick_y;
@@ -152,11 +153,16 @@ public class TeleopMain extends OpMode {
         }
 
         if(b){
-            bucket = 0.75;
+            bucket = 0.9;
             robot.Bucket.setPosition(bucket);
         }
         else {
-            bucket = robot.Arm.getCurrentPosition() / 10800.0;
+            bucket = robot.Arm.getCurrentPosition() / 12000.0;
+            bucket = 1 - bucket;
+            bucket += BUCKET_LEVEL;
+            if (bucket > 1){
+                bucket -= 1;
+            }
             robot.Bucket.setPosition(bucket);
         }
 
