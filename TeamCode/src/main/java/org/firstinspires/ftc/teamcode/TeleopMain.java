@@ -93,7 +93,6 @@ public class TeleopMain extends OpMode {
     @Override
     public void loop() {
         // TODO: update for new arm
-        final double MAX_EXTEND = 1190;
         final double ARM_SPEED = 1;
         final double BUCKET_LIMIT = .8;
         double leftStick2 = -gamepad2.left_stick_y;
@@ -108,16 +107,18 @@ public class TeleopMain extends OpMode {
         boolean leftBumper = gamepad2.left_bumper;
         boolean fast = gamepad1.left_bumper;
         boolean slow = gamepad1.right_bumper;
-        double currentArmPosition = robot.Arm.getCurrentPosition();
         double rightPower = 0;
         double leftPower = 0;
-        double clawPower = 0;
-        double finalArmPower = 0;
         double carouselPower = 0;
 
         //Arm
-        robot.Arm.setPower(leftStick2);
-        robot.Bucket.setPower(leftStick2 * BUCKET_LIMIT);
+        if(robot.Arm.getCurrentPosition() < 10 && leftStick2 < 0){
+            robot.Arm.setPower(0);
+        } else {
+            robot.Arm.setPower(leftStick2 * ARM_SPEED);
+            robot.Bucket.setPower(leftStick2 * BUCKET_LIMIT);
+        }
+
 
         //Bucket
         robot.Bucket.setPower(rightStick2);
@@ -147,19 +148,9 @@ public class TeleopMain extends OpMode {
 
         //carousel
         if (leftBumper && !rightBumper) {
-            carouselPower = -1;
+            carouselPower = -0.3;
         } else if (!leftBumper && rightBumper) {
-            carouselPower = 1;
-        }
-
-        //prevents arm from going to far
-        if ((currentArmPosition > MAX_EXTEND) && (leftStick2 > 0.01)) {
-            finalArmPower = 0;
-        } else if ((currentArmPosition < 10) && (leftStick2 < -0.01)) {
-            finalArmPower = 0;
-        } else {
-            finalArmPower = leftStick2 * ARM_SPEED;
-
+            carouselPower = 0.3;
         }
 
         //declaring powers
@@ -168,13 +159,10 @@ public class TeleopMain extends OpMode {
         robot.RightFront.setPower(rightPower);
         robot.RightBack.setPower(rightPower);
         robot.CarouselWheel.setPower(carouselPower);
-        robot.Arm.setPower(finalArmPower);
 
         //telemetry
         telemetry.addData("Left:", "%.2f", leftStick);
         telemetry.addData("Right:", "%.2f", rightStick);
-        telemetry.addData("Claw:", clawPower);
-        telemetry.addData("Current Arm Position", robot.Arm.getCurrentPosition());
         telemetry.addData("Slow", slow);
         telemetry.addData("Fast", fast);
         telemetry.update();
