@@ -14,8 +14,14 @@ public class MeepMeepTesting {
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(57.73611498784813, 60, Math.toRadians(180), Math.toRadians(180), 17)
                 .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(-5, -61, Math.toRadians(0))) // COPY PASTE YOUR CODE AFTER THIS LINE, edit this line to the start pos of robot
-                                .forward(50)
+                        drive.trajectorySequenceBuilder(new Pose2d(-5, 61, Math.toRadians(0))) // COPY PASTE YOUR CODE AFTER THIS LINE, edit this line to the start pos of robot                .splineTo(new Vector2d(50, 55), Math.toRadians(0)) // This automatically gets the robot to the specified position using a spline curve
+                                .back(20) // Align with Carousel Wheel
+                                .splineTo(new Vector2d(-57, 60), Math.toRadians(180))
+                                .waitSeconds(1)
+                                .splineTo(new Vector2d(-12, 40), Math.toRadians(270)) // Go To Blue Shipping Hub
+                                .waitSeconds(1)
+                                .setReversed(true)
+                                .splineTo(new Vector2d(50, 40), Math.toRadians(0))
                                 .build()
                 );
 
