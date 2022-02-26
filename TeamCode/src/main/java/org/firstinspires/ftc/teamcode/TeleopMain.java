@@ -105,16 +105,17 @@ public class TeleopMain extends OpMode {
         boolean leftBumper = gamepad2.left_bumper;
         boolean fast = gamepad1.left_bumper;
         boolean slow = gamepad1.right_bumper;
+        boolean a = gamepad2.a;
         boolean b = gamepad2.b;
         double rightPower;
         double leftPower;
         double carouselPower = 0;
 
         //Arm
-        if(robot.Arm.getCurrentPosition() < 10 && leftStick2 < -0.1){
+        if(robot.Arm.getCurrentPosition() < 10 && leftStick2 < -0.1 && !a){
             robot.Arm.setPower(0);
         } else {
-            robot.Arm.setPower(leftStick2 * ARM_SPEED);
+            robot.Arm.setPower(-leftStick2 * ARM_SPEED);
         }
 
         //Intake
