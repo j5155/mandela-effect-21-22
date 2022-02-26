@@ -24,6 +24,7 @@ public class RRRedStorageSite extends LinearOpMode {
 
         TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(startPose)
                 .back(20) // Align with Carousel Wheel
+                .splineTo(new Vector2d(-57, -60), Math.toRadians(180))
                 .waitSeconds(1)
                 .addDisplacementMarker(() -> {
                     carouselWheel(robot.CAROUSEL_SPEED, 8.4);// Spin Carousel Wheel
